@@ -32,17 +32,17 @@ class GameScene extends Phaser.Scene {
     this.emitter
   }
   preload() {
-    this.load.image("bg", "/assets/bg.png");
-    this.load.image("basket", "/assets/basket.png");
-    this.load.image("apple", "/assets/apple.png");
-    this.load.image("money", "/assets/money.png");
-    this.load.audio("coin", "/assets/coin.mp3");
-    this.load.audio("bgMusic", "/assets/bgMusic.mp3");
+    this.load.image("bg", "assets/bg.png");
+    this.load.image("basket", "assets/basket.png");
+    this.load.image("apple", "assets/apple.png");
+    this.load.image("money", "assets/money.png");
+    this.load.audio("coin", "assets/coin.mp3");
+    this.load.audio("bgMusic", "assets/bgMusic.mp3");
   }
   create() {
     this.scene.pause("scene-game");
 
-    this.coinMusic =this.sound.add("coin")
+    this.coinMusic = this.sound.add("coin")
     this.bgMusic = this.sound.add("bgMusic")
     this.bgMusic.play()
     // this.bgMusic.stop()
@@ -54,7 +54,7 @@ class GameScene extends Phaser.Scene {
     this.player.setImmovable(true)
     this.player.body.allowGravity = false
     this.player.setCollideWorldBounds(true)
-    this.player.setSize(80,15).setOffset(10,70)
+    this.player.setSize(80, 15).setOffset(10, 70)
 
     this.target = this.physics.add
       .image(0, 0, "apple")
@@ -76,12 +76,12 @@ class GameScene extends Phaser.Scene {
 
     this.timedEvent = this.time.delayedCall(30000, this.gameOver, [], this)
 
-    this.emitter = this.add.particles(0,0,"money",{
+    this.emitter = this.add.particles(0, 0, "money", {
       speed: 100,
-      gravityY: speedDown-200,
-      scale:0.04,
+      gravityY: speedDown - 200,
+      scale: 0.04,
       duration: 100,
-      emitting:false
+      emitting: false
     });
     this.emitter.startFollow(this.player, this.player.width / 2, this.player.height / 2, true)
 
@@ -120,7 +120,7 @@ class GameScene extends Phaser.Scene {
   }
   gameOver() {
     this.sys.game.destroy(true)
-    if(this.points >= 10){
+    if (this.points >= 10) {
       gameEndScoreSpan.textContent = this.points
       gameWinLoseSpan.textContent = 'Win!'
     } else {
